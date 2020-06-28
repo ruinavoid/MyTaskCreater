@@ -45,7 +45,7 @@
             this.taskPathTextBox.Enabled = false;
             this.taskPathTextBox.Location = new System.Drawing.Point(12, 35);
             this.taskPathTextBox.Name = "taskPathTextBox";
-            this.taskPathTextBox.Size = new System.Drawing.Size(407, 26);
+            this.taskPathTextBox.Size = new System.Drawing.Size(531, 26);
             this.taskPathTextBox.TabIndex = 0;
             // 
             // taskPathLable
@@ -70,7 +70,7 @@
             // 
             this.taskTitleTextBox.Location = new System.Drawing.Point(12, 100);
             this.taskTitleTextBox.Name = "taskTitleTextBox";
-            this.taskTitleTextBox.Size = new System.Drawing.Size(407, 26);
+            this.taskTitleTextBox.Size = new System.Drawing.Size(531, 26);
             this.taskTitleTextBox.TabIndex = 3;
             this.taskTitleTextBox.TextChanged += new System.EventHandler(this.taskTitleTextBox_TextChanged);
             // 
@@ -94,7 +94,7 @@
             // weekOfYearLabel
             // 
             this.weekOfYearLabel.AutoSize = true;
-            this.weekOfYearLabel.Location = new System.Drawing.Point(217, 134);
+            this.weekOfYearLabel.Location = new System.Drawing.Point(299, 134);
             this.weekOfYearLabel.Name = "weekOfYearLabel";
             this.weekOfYearLabel.Size = new System.Drawing.Size(145, 20);
             this.weekOfYearLabel.TabIndex = 5;
@@ -103,7 +103,7 @@
             // weeklyTextBox
             // 
             this.weeklyTextBox.Enabled = false;
-            this.weeklyTextBox.Location = new System.Drawing.Point(293, 161);
+            this.weeklyTextBox.Location = new System.Drawing.Point(375, 161);
             this.weeklyTextBox.Name = "weeklyTextBox";
             this.weeklyTextBox.Size = new System.Drawing.Size(58, 26);
             this.weeklyTextBox.TabIndex = 6;
@@ -111,7 +111,7 @@
             // useWeeklyCheckBox
             // 
             this.useWeeklyCheckBox.AutoSize = true;
-            this.useWeeklyCheckBox.Location = new System.Drawing.Point(224, 163);
+            this.useWeeklyCheckBox.Location = new System.Drawing.Point(306, 163);
             this.useWeeklyCheckBox.Name = "useWeeklyCheckBox";
             this.useWeeklyCheckBox.Size = new System.Drawing.Size(64, 24);
             this.useWeeklyCheckBox.TabIndex = 7;
@@ -121,7 +121,7 @@
             // 
             // doIt_Butten
             // 
-            this.doIt_Butten.Location = new System.Drawing.Point(152, 207);
+            this.doIt_Butten.Location = new System.Drawing.Point(206, 207);
             this.doIt_Butten.Name = "doIt_Butten";
             this.doIt_Butten.Size = new System.Drawing.Size(128, 41);
             this.doIt_Butten.TabIndex = 8;
@@ -133,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 260);
+            this.ClientSize = new System.Drawing.Size(555, 260);
             this.Controls.Add(this.doIt_Butten);
             this.Controls.Add(this.useWeeklyCheckBox);
             this.Controls.Add(this.weeklyTextBox);

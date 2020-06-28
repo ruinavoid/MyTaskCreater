@@ -30,9 +30,7 @@ namespace MyTaskCreater
             checkIniFileExisting();
             ChangeFormLocation();
             DirectoryInfo iniPathDirInfo = new DirectoryInfo(iniPath);
-            RefreshYearStr();
-            RefreshWeekStr();
-            RefreshDateStr();
+            useWeeklyCheckBox.Checked = true;
             RefreshTaskPath();
         }
 
@@ -70,17 +68,47 @@ namespace MyTaskCreater
             CultureInfo myCI = new CultureInfo("en-US");
             Calendar myCal = myCI.Calendar;
             CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
-            DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
-            theWeek = myCal.GetWeekOfYear(today, myCWR,myFirstDOW);
-            weeklyTextBox.Text = "WW" + theWeek.ToString().PadLeft(2, '0');
+            theWeek = myCal.GetWeekOfYear(today, myCWR, DayOfWeek.Monday);
+            myCal.GetDayOfWeek(today);
+            int firstDayOfWeekDiff = GetStartDate(this.today);
+            string firstDayOfWeekDateStr = this.today.AddDays(-firstDayOfWeekDiff).ToString("MMdd");
+            string lastDayOfWeekDateStr = this.today.AddDays(-firstDayOfWeekDiff).AddDays(6).ToString("MMdd"); ;
+            weeklyTextBox.Text = "WW" + theWeek.ToString().PadLeft(2, '0') + " " + firstDayOfWeekDateStr + "-" + lastDayOfWeekDateStr;
             RefreshWeeklyStr();
+            
+        }
 
+        private int GetStartDate(DateTime dt)
+        {
+            int currentIndex = 0;
+
+            switch (Convert.ToInt32(dt.DayOfWeek))
+            {
+                case 0: currentIndex = 6;
+                    break;
+                case 1: currentIndex = 0;
+                    break;
+                case 2: currentIndex = 1;
+                    break;
+                case 3: currentIndex = 2;
+                    break;
+                case 4: currentIndex = 3;
+                    break;
+                case 5: currentIndex = 4;
+                    break;
+                case 6: currentIndex = 5;
+                    break;
+            }
+            int beginIndex = currentIndex;
+
+            return beginIndex;
         }
 
         private void RefreshWeeklyStr()
         {
             if (useWeeklyCheckBox.Checked)
             {
+
                 weelyStr = "\\" + weeklyTextBox.Text;
             }
             else
@@ -140,27 +168,31 @@ namespace MyTaskCreater
                 {
                     myDirInfo.Create();
                     FileInfo myFile = new FileInfo(myDirInfo.FullName + "\\" + taskTitleTextBox.Text.Trim() + ".md");
-                    myFile.Create();
+                    FileStream myFileStream = myFile.Create();
+                    myFileStream.Close();
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
             }
-            //writeIni("Global", "Path", currentPath);
             taskTitleTextBox.Text = "";
             RefreshTaskPath();
         }
 
         private void useWeeklyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            RefreshWeeklyStr();
-            FillTaskPath();
+            refreshDateAndStr();
         }
 
         private void currentDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            today = DateTime.Parse(currentDateTimePicker.Text);
+            refreshDateAndStr();
+        }
+
+        private void refreshDateAndStr()
+        {
+            this.today = DateTime.Parse(currentDateTimePicker.Text);
             RefreshYearStr();
             RefreshWeekStr();
             RefreshDateStr();
@@ -182,6 +214,12 @@ namespace MyTaskCreater
             {
                 taskPathTextBox.Text = currentPath + "\\" + yearStr + weelyStr;
             }
+        }
+
+        private void myTaskMain_Activated(object sender, EventArgs e)
+        {
+            taskTitleTextBox.Focus();
+            refreshDateAndStr();
         }
     }
 }
